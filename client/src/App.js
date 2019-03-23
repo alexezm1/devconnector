@@ -31,9 +31,9 @@ if(localStorage.jwtToken){
   const currentTime = Date.now() / 1000;
   if(decoded.exp < currentTime ){
     //logout user
-    store.dispatch(logoutUser);
+    store.dispatch(logoutUser());
     //Clear current profile
-    store.dispatch(clearCurrentProfile);
+    store.dispatch(clearCurrentProfile());
     //redirect to login
     window.location.href = "/login";
   }
@@ -43,20 +43,21 @@ class App extends Component {
   render() {
     return (
       <Provider store = {store}>
-      <Router><div className="App">
-        <Navbar/>
-        <Route exact path = "/" component = {Landing}/>
-        <div className="container">
-          <Route exact path = "/register" component = {Register}/>
-          <Route exact path = "/login" component = {Login}/>
-          <Switch>
-            <PrivateRoute exact path = "/dashboard" component = {Dashboard}/>
-            <PrivateRoute exact path = "/create-profile" component = {CreateProfile}/>
-          </Switch>
-        </div>
-        <Footer/>
-      </div>
-      </Router>
+        <Router>
+          <div className="App">
+            <Navbar/>
+            <Route exact path = "/" component = {Landing}/>
+            <div className="container">
+              <Route exact path = "/register" component = {Register}/>
+              <Route exact path = "/login" component = {Login}/>
+              <Switch>
+                <PrivateRoute exact path = "/dashboard" component = {Dashboard}/>
+                <PrivateRoute exact path = "/create-profile" component = {CreateProfile}/>
+              </Switch>
+            </div>
+            <Footer/>
+          </div>
+        </Router>
       </Provider>
     );
   }
