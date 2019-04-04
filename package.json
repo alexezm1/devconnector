@@ -2,6 +2,9 @@
   "name": "curso-mern",
   "version": "1.0.0",
   "description": "social network for devs",
+  "engines":{
+    "node": "10.15.3"
+  },
   "main": "server.js",
   "scripts": {
     "client-install": "npm install --prefix client",
